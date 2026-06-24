@@ -99,7 +99,7 @@ jobs:
 
       - name: Build gg
         run: |
-          go build -v -o gg-${ASSET_NAME} -trimpath -ldflags "-X github.com/mzz2017/gg/cmd.Version=${{ steps.get_version.outputs.VERSION }} -s -w -buildid=" .
+          go build -v -o gg-${ASSET_NAME} -trimpath -tags with_utls -ldflags "-X github.com/mzz2017/gg/cmd.Version=${{ steps.get_version.outputs.VERSION }} -s -w -buildid=" .
 
       - name: UPX compress
         if: matrix.goos == 'linux' && (matrix.goarch == 'amd64' || matrix.goarch == 'arm64' || matrix.goarch == 'arm' || matrix.goarch == '386')
