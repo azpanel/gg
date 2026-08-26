@@ -70,9 +70,8 @@ jobs:
         run: |
           if [[ -n "$INPUT_TAG" ]]; then
             version="$INPUT_TAG"
-          elif [[ "$REF" == "refs/tags/v"* ]]; then
-            tag=$(git describe --tags $(git rev-list --tags --max-count=1))
-            version=${tag}
+          elif [[ "$REF" == "refs/tags/"* ]]; then
+            version="${REF#refs/tags/}"
           else
             date=$(git log -1 --format="%cd" --date=short | sed s/-//g)
             count=$(git rev-list --count HEAD)
