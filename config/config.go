@@ -4,6 +4,7 @@ type Subscription struct {
 	Link          string `mapstructure:"link"`
 	Select        string `mapstructure:"select" default:"first"`
 	CacheLastNode bool   `mapstructure:"cache_last_node" default:"true"`
+	Nodes         []string `mapstructure:"nodes,omitempty"`
 }
 type Cache struct {
 	Subscription CacheSubscription `mapstructure:"subscription"`

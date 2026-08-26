@@ -57,6 +57,17 @@ gg 是一个命令行工具，可在 Linux 环境下对任意命令进行一键�
 gg config -w subscription='https://example.com/path/to/sub'
 ```
 
+也可以交互输入 v2rayN Base64 订阅并选择节点：
+
+```bash
+gg loginbylink
+gg select
+```
+
+`loginbylink` 会保存订阅节点快照。本机无法通过 IPv6 访问 `ipv6.ip.sb` 时，
+名称中包含 `ipv6`（不区分大小写）的节点会被过滤。节点列表按名称排序，支持
+PageUp/PageDown 翻页；只有通过该节点访问 `myip.ipip.net` 成功后，节点才会保存为默认节点。
+
 克隆 linux 仓库来试试效果：
 
 ```bash

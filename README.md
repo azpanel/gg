@@ -64,6 +64,18 @@ Configure the subscription:
 gg config -w subscription='https://example.com/path/to/sub'
 ```
 
+Or log in interactively with a v2rayN Base64 subscription and select a saved node:
+
+```bash
+gg loginbylink
+gg select
+```
+
+`loginbylink` saves a snapshot of the subscription. If this machine cannot reach
+`ipv6.ip.sb` over IPv6, nodes whose names contain `ipv6` are excluded. The node
+picker is sorted by name and supports PageUp/PageDown; a node is saved as the
+default only after `myip.ipip.net` responds through it.
+
 Test with cloning linux repo:
 
 ```bash

@@ -162,7 +162,7 @@ func init() {
 	rootCmd.PersistentFlags().String("dns", "", "upstream DNS server for hijacked DNS queries, e.g. 1.1.1.1 or 1.1.1.1:53")
 	rootCmd.PersistentFlags().String("testnode", "true", "test the connectivity before connecting to the node")
 	rootCmd.PersistentFlags().Bool("select", false, "manually select the node to connect from the subscription")
-	rootCmd.AddCommand(configCmd)
+	rootCmd.AddCommand(configCmd, loginByLinkCmd, selectCmd)
 }
 
 func NewLogger(verbose int) *logrus.Logger {
