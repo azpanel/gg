@@ -207,6 +207,7 @@ gg config
 ```
 
 > ```
+> closeclierr=false
 > node=
 > subscription.link=https://example.com/path/to/sub
 > subscription.select=first
@@ -236,6 +237,17 @@ gg config node
 > ```
 > vmess://MY_VMESS_SERVER_SHARE_LINK
 > ```
+
+隐藏 gg 自身输出的警告和错误：
+
+```bash
+gg config -w closeclierr=true
+```
+
+启用后，gg 的 `WARN`、`ERROR`、`FATAL` 和 `PANIC` 日志不会显示在终端，而是按日期追加到
+`${XDG_STATE_HOME:-$HOME/.local/state}/gg/logs/YYYY-MM-DD.log`。gg 启动的程序仍然正常使用终端，
+因此不会影响 Codex 等交互式程序的界面和输出。使用 `gg config closeclierr` 查询当前值，使用
+`gg config -w closeclierr=false` 或 `gg config -u closeclierr` 恢复终端错误日志。
 
 ## 问与答
 

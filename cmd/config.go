@@ -207,6 +207,11 @@ func getConfig(log *logrus.Logger, bindToConfig bool, newViper func() *viper.Vip
 		if err := v.Unmarshal(&config.ParamsObj); err != nil {
 			log.Fatalf("Fatal error loading config: %s", err)
 		}
+		if config.ParamsObj.CloseCLIErr {
+			if err := redirectCLIErrorLogs(log); err != nil {
+				log.Errorf("Failed to redirect CLI error logs: %v", err)
+			}
+		}
 	}
 
 	log.Tracef("Config:\n%v\n", strings.Join(common.MapToKV(v.AllSettings()), "\n"))

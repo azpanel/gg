@@ -25,6 +25,8 @@ type Params struct {
 
 	TestNode bool   `mapstructure:"test_node_before_use" default:"true"`
 	TestURL  string `mapstructure:"test_url" default:"https://connectivitycheck.gstatic.com/generate_204"`
+
+	CloseCLIErr bool `mapstructure:"closeclierr" default:"false"`
 }
 
 var ParamsObj Params

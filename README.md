@@ -215,6 +215,7 @@ gg config
 ```
 
 > ```
+> closeclierr=false
 > node=
 > subscription.link=https://example.com/path/to/sub
 > subscription.select=first
@@ -244,6 +245,18 @@ gg config node
 > ```
 > vmess://MY_VMESS_SERVER_SHARE_LINK
 > ```
+
+Hide warnings and errors emitted by gg itself:
+
+```bash
+gg config -w closeclierr=true
+```
+
+When enabled, gg writes `WARN`, `ERROR`, `FATAL`, and `PANIC` entries to
+`${XDG_STATE_HOME:-$HOME/.local/state}/gg/logs/YYYY-MM-DD.log` instead of the terminal. Programs launched
+by gg keep their normal terminal streams, so interactive applications such as Codex are unaffected. Use
+`gg config closeclierr` to read the current value, and use `gg config -w closeclierr=false` or
+`gg config -u closeclierr` to restore terminal error logging.
 
 ## Q&A
 
