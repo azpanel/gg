@@ -1,5 +1,7 @@
-.vscode
-.idea
+.vscode/
+.idea/
 gg
+/dist/
+/gg.md
 
 !completion/**
