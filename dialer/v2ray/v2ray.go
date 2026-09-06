@@ -316,7 +316,7 @@ func (s *V2Ray) ExportToURL() string {
 		}
 		//TODO: QUIC
 		if s.TLS != "none" {
-			common.SetValue(&query, "sni", s.Host) // FIXME: it may be different from ws's host
+			common.SetValue(&query, "sni", s.SNI)
 			common.SetValue(&query, "alpn", s.Alpn)
 			common.SetValue(&query, "allowInsecure", common.BoolToString(s.AllowInsecure))
 		}

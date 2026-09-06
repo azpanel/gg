@@ -1,6 +1,9 @@
 package v2ray
 
-import "testing"
+import (
+	"net/url"
+	"testing"
+)
 
 func TestParseVlessRealityURL(t *testing.T) {
 	t.Parallel()
@@ -21,6 +24,32 @@ func TestParseVlessRealityURL(t *testing.T) {
 	}
 	if _, err := node.Dialer(); err != nil {
 		t.Fatal(err)
+	}
+}
+
+func TestExportVlessRealityURLPreservesSNI(t *testing.T) {
+	t.Parallel()
+
+	const wantSNI = "www.cloudflare.com"
+	link := "vless://11111111-1111-1111-1111-111111111111@example.com:443?security=reality&type=tcp&sni=" + wantSNI + "&pbk=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&sid=6ba85179e30d4fc2&fp=chrome#demo"
+	node, err := ParseVlessURL(link)
+	if err != nil {
+		t.Fatal(err)
+	}
+	exported := node.ExportToURL()
+	u, err := url.Parse(exported)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := u.Query().Get("sni"); got != wantSNI {
+		t.Fatalf("exported SNI = %q, want %q; URL: %s", got, wantSNI, exported)
+	}
+	reloaded, err := ParseVlessURL(exported)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if reloaded.SNI != wantSNI {
+		t.Fatalf("reloaded SNI = %q, want %q", reloaded.SNI, wantSNI)
 	}
 }
 
